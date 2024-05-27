@@ -14,13 +14,13 @@ class Fuerza:
 
         # scale vector to distance to intersection
 
-        # y-intercept form of border_vector
+        # # y-intercept form of border_vector
         m_1 = border_vector[1] / border_vector[0]
-        b_1 = capa.xy[1] - (border_vector[1] / border_vector[0]) * capa.xy[0]
+        b_1 = capa.xy[1] - m_1 * capa.xy[0] ###### y = mx + b -> b = y - mx
 
         # y-intercept form of self.vector
         m_2 = self.vector[1] / self.vector[0]
-        b_2 = capa.xy[1] - (self.vector[1] / self.vector[0]) * capa.xy[0]
+        b_2 = capa.xy[1] - m_2 * capa.xy[0]
 
         # interception point of border_vector and self.vector
         x = (b_2 - b_1) / (m_1 - m_2)

@@ -1,6 +1,7 @@
 import numpy as np
 from graph import Graph
 from time import sleep
+import pandas as pd
 
 ## maybe I need to pass a function as a parameter to either the step or run methods.
 # the function I would need to pass would be to update the animation of the graph.
@@ -12,6 +13,16 @@ class Sim:
         self.count = 0
         self.vector = self.capa.vector1
         self.sleep = sleep
+        self.data = pd.DataFrame(
+            {
+                "Position": [
+                    self.fuerza.xy
+                ],
+                "Direction": [
+                    self.fuerza.vector
+                ]
+            }
+        )
         self.graph = Graph(fuerza=self.fuerza, capa=self.capa)
 
     def step(self):
@@ -30,7 +41,20 @@ class Sim:
             self.count = self.count + 1
             self.vector = self.capa.vector2
 
-            print("Position: " + str(self.fuerza.xy) + " Direction: " + str(self.fuerza.vector))
+            # maybe put it into a pandas dataframe?
+            #print("Position: " + str(self.fuerza.xy) + " Direction: " + str(self.fuerza.vector))
+            temp = pd.DataFrame(
+                {
+                    "Position": [
+                        self.fuerza.xy
+                    ],
+                    "Direction": [
+                        self.fuerza.vector
+                    ]
+                }
+            )
+
+            self.data = pd.concat([self.data, temp], ignore_index=True)
 
         else:
             self.fuerza.move(
@@ -39,20 +63,30 @@ class Sim:
             )
             self.fuerza.reflect(border_vector=self.vector)
             self.vector = self.capa.vector1
-            print("Position: " + str(self.fuerza.xy) + " Direction: " + str(self.fuerza.vector))
 
-        self.graph.show()
+            temp = pd.DataFrame(
+                {
+                    "Position": [
+                        self.fuerza.xy
+                    ],
+                    "Direction": [
+                        self.fuerza.vector
+                    ]
+                }
+            )
 
-        # I need to "update the graph" to show the "new" fuerza
-        # - it should already be "updated" because of the parameter I passed to Graph() when constructing the Sim()
-        # self.graph.update(fuerza=self.fuerza)
+            self.data = pd.concat([self.data, temp], ignore_index=True)
 
 
+    def run(self, times):
 
-    def run(self):
-
-        for i in range(5):
+        for i in range(times):
             self.step()
+
+        self.graph.setDataframe(self.data)
+        # print(self.graph.dataframe)
+        self.graph.create(times)
+        self.graph.show()
 
 
 
