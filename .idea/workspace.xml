@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d47d9084-f749-44f3-a8a0-b85cb2e0dde0" name="Changes" comment="Initial">
+    <list default="true" id="d47d9084-f749-44f3-a8a0-b85cb2e0dde0" name="Changes" comment="Sustains:&#10;-successfully animated fuerza arrow without needing to remove and recreate arrow. &#10;-each sim.step() will be expressed in number_of_frames variable in graph.py&#10;Improves:&#10;-Fuerza is not pointed in the direction of movement.&#10;-still need to reflect at the right spot&#10;-need to animate each sim.step()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuerza.py" beforeDir="false" afterPath="$PROJECT_DIR$/fuerza.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/capa.py" beforeDir="false" afterPath="$PROJECT_DIR$/capa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fuerza.py" beforeDir="false" afterPath="$PROJECT_DIR$/rayo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sim.py" beforeDir="false" afterPath="$PROJECT_DIR$/sim.py" afterDir="false" />
@@ -47,24 +48,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.fuerza.executor": "Run",
-    "Python.graph.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.sim.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/tobia/PycharmProjects/reflectionOfForces",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.fuerza.executor&quot;: &quot;Run&quot;,
+    &quot;Python.graph.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sim.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tobia/PycharmProjects/reflectionOfForces&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "directory"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -105,7 +106,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716491172842</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Sustains:&#10;-successfully animated fuerza arrow without needing to remove and recreate arrow. &#10;-each sim.step() will be expressed in number_of_frames variable in graph.py&#10;Improves:&#10;-Fuerza is not pointed in the direction of movement.&#10;-still need to reflect at the right spot&#10;-need to animate each sim.step()">
+      <option name="closed" value="true" />
+      <created>1716777749137</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716777749137</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,6 +130,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial" />
+    <MESSAGE value="Sustains:&#10;-successfully animated fuerza arrow without needing to remove and recreate arrow. &#10;-each sim.step() will be expressed in number_of_frames variable in graph.py&#10;Improves:&#10;-Fuerza is not pointed in the direction of movement.&#10;-still need to reflect at the right spot&#10;-need to animate each sim.step()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sustains:&#10;-successfully animated fuerza arrow without needing to remove and recreate arrow. &#10;-each sim.step() will be expressed in number_of_frames variable in graph.py&#10;Improves:&#10;-Fuerza is not pointed in the direction of movement.&#10;-still need to reflect at the right spot&#10;-need to animate each sim.step()" />
   </component>
 </project>

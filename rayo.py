@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-class Fuerza:
+class Rayo:
     def __init__(self, xy, vector):
         self.xy = xy
         self.vector = vector
@@ -18,18 +18,17 @@ class Fuerza:
         m_1 = border_vector[1] / border_vector[0]
         b_1 = capa.xy[1] - m_1 * capa.xy[0] ###### y = mx + b -> b = y - mx
 
-        # y-intercept form of self.vector
-        m_2 = self.vector[1] / self.vector[0]
-        b_2 = capa.xy[1] - m_2 * capa.xy[0]
 
         # interception point of border_vector and self.vector
-        x = (b_2 - b_1) / (m_1 - m_2)
+        x = (self.b - b_1) / (m_1 - self.slope)
         y = m_1 * x + b_1
 
-        self.distance = math.sqrt( (x - self.xy[0])**2 + (y - self.xy[1])**2)
 
-        norm = np.linalg.norm(self.vector)
-        self.xy = np.add(self.xy, (self.distance / norm) * self.vector)
+        self.xy = np.array([x, y])
+        # self.distance = math.sqrt((x - self.xy[0])**2 + (y - self.xy[1])**2)
+        #
+        # norm = np.linalg.norm(self.vector)
+        # self.xy = np.add(self.xy, (self.distance / norm) * self.vector)
 
     def reflect(self, border_vector):
 

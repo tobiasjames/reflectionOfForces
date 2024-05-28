@@ -1,11 +1,13 @@
+import math
+
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import matplotlib.animation as animation
 import numpy as np
 import pandas as pd
 class Graph:
-    def __init__(self, fuerza, capa):
-        self.fuerza = fuerza
+    def __init__(self, rayo, capa):
+        self.rayo = rayo
         self.capa = capa
         self.fig = None
         self.ax = None
@@ -24,23 +26,23 @@ class Graph:
 
         # 2) Create figures
         f1_visual = patches.FancyArrowPatch(
-            posA=(self.fuerza.xy[0], self.fuerza.xy[1]),
-            posB=(self.fuerza.xy[0] + self.fuerza.vector[0], self.fuerza.xy[1] + self.fuerza.vector[1])
+            posA=(self.rayo.xy[0], self.rayo.xy[1]),
+            posB=(self.rayo.xy[0] + self.rayo.vector[0], self.rayo.xy[1] + self.rayo.vector[1])
         )
 
         v1 = patches.Arrow(
             x=self.capa.xy[0],
             y=self.capa.xy[1],
-            dx=self.capa.vector1[0] * 100000,
-            dy=self.capa.vector1[1] * 100000,
+            dx=self.capa.top_vector[0] * 100000,
+            dy=self.capa.top_vector[1] * 100000,
             color='r'
         )
 
         v2 = patches.Arrow(
             x=self.capa.xy[0],
             y=self.capa.xy[1],
-            dx=self.capa.vector2[0] * 100000,
-            dy=self.capa.vector2[1] * 100000,
+            dx=self.capa.bottom_vector[0] * 100000,
+            dy=self.capa.bottom_vector[1] * 100000,
             color='r'
         )
 
@@ -50,53 +52,72 @@ class Graph:
         self.ax.add_patch(v2)
 
         # 4) Set the limits of the axes
-        self.ax.set_xlim(-10, 10)
-        self.ax.set_ylim(-10, 10)
+        self.ax.set_xlim(-5, 5)
+        self.ax.set_ylim(-5, 5)
 
         # 5) Create an animation function that updates the artists for a given frame. Typically, this calls set_* methods of the artists.
 
 
-        number_of_frames = 10
+        number_of_frames = times
 
         positions = self.dataframe["Position"]
         directions = self.dataframe["Direction"]
 
         def update(frame):
 
-            # for row in self.dataframe.iterrows():
-            #     x = row[1][0][0]
-            #     y = row[1][0][1]
-            #     dx = row[1][1][0]
-            #     dy = row[1][1][1]
+            x = positions[frame][0]
+            y = positions[frame][1]
+            B_x = x + directions[frame][0]
+            B_y = y + directions[frame][1]
 
-
-            x = positions[0][0]
-            y = positions[0][1]
-            dx = directions[0][0]
-            dy = directions[0][1]
-
-            print(x, y, dx, dy)
             f1_visual.set_positions(
-                posA=(x + dx * (frame / number_of_frames), y + dy + (frame / number_of_frames)),
-                posB=(x + dx * ((frame + 1) / number_of_frames), y + dy * ((frame + 1) / number_of_frames))
+                posA=(x, y),
+                posB=(B_x, B_y)
             )
-            # patch = plt.Arrow(
-            #     x=x + dx / ((number_of_frames + 1) - frame),
-            #     y=y + dy / ((number_of_frames + 1) - frame),
-            #     dx=dx,
-            #     dy=dy
-            # )
-            # self.ax.add_patch(patch)
 
+
+                    # print(f1_visual)
+            #
+            #
+            #     distance = math.sqrt((positions[1][1] - y_origin) ** 2 + (positions[1][0] - x_origin) ** 2)
+            #
+            #     x_distance = (dx * distance) / (math.sqrt(dx ** 2 + dy ** 2))
+            #     y_distance = (dy * distance) / (math.sqrt(dx ** 2 + dy ** 2))
+            #
+            #     # print(distance, x_distance, y_distance, distance * self.rayo.vector)
+            #     # print(x_origin, y_origin, dx, dy)
+            #
+            #     x_origin = x_origin + x_distance * (frame / number_of_frames)
+            #     y_origin = y_origin + y_distance * (frame / number_of_frames)
+            #     B_x = x_origin + dx
+            #     B_y = y_origin + dy
+            #
+            #     # print(x_origin, y_origin, B_x, B_y)
+            #     # f1_visual.set_positions(
+            #     #     posA=(x_origin, y_origin),
+            #     #     posB=(B_x, B_y)
+            #     # )
+            #
+            #     f1_visual = patches.FancyArrowPatch(
+            #         posA=(x_origin, y_origin),
+            #         posB=(B_x, B_y)
+            #     )
+            #     total_patches.append(f1_visual)
+            #
             return f1_visual
+
 
         # 6) Create a FuncAnimation, passing the Figure and the animation function.
         self.ani = animation.FuncAnimation(
             fig=self.fig,
             func=update,
-            interval=200,
-            frames=np.arange(0, number_of_frames, 1)
+            interval=1000,
+            frames=np.arange(0, number_of_frames + 1, 1)
         )
+
+
+
+
 
     def setDataframe(self, dataframe):
         self.dataframe = dataframe

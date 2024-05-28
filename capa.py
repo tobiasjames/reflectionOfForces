@@ -1,9 +1,9 @@
 class Capa:
-    def __init__(self, xy, vector1, vector2):
+    def __init__(self, xy, top_vector, bottom_vector):
         self.xy = xy
-        self.vector1 = vector1
-        self.vector2 = vector2
-        self.slope1 = self.vector1[1] / self.vector1[0]
-        self.b1 = self.xy[1] - self.slope1 * self.xy[0]
-        self.slope2 = self.vector2[1] / self.vector2[0]
-        self.b2 = self.xy[1] - self.slope2 * self.xy[0]
+        self.top_vector = top_vector
+        self.bottom_vector = bottom_vector
+        self.top_slope = self.top_vector[1] / self.top_vector[0]
+        self.top_y_intercept = self.xy[1] - self.top_slope * self.xy[0]
+        self.bottom_slope = self.bottom_vector[1] / self.bottom_vector[0]
+        self.bottom_y_intercept = self.xy[1] - self.bottom_slope * self.xy[0]
