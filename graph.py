@@ -52,8 +52,8 @@ class Graph:
         self.ax.add_patch(v2)
 
         # 4) Set the limits of the axes
-        self.ax.set_xlim(-5, 5)
-        self.ax.set_ylim(-5, 5)
+        self.ax.set_xlim(-10, 10)
+        self.ax.set_ylim(-10, 10)
 
         # 5) Create an animation function that updates the artists for a given frame. Typically, this calls set_* methods of the artists.
 
@@ -111,7 +111,7 @@ class Graph:
         self.ani = animation.FuncAnimation(
             fig=self.fig,
             func=update,
-            interval=1000,
+            interval=500,
             frames=np.arange(0, number_of_frames + 1, 1)
         )
 

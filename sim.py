@@ -10,8 +10,7 @@ class Sim:
     def __init__(self, capa, rayo, sleep=1.0):
         self.capa = capa
         self.rayo = rayo
-        self.count = 0
-        self.vector = self.capa.top_vector
+        self.border_vector = self.capa.top_vector
         self.sleep = sleep
         self.data = pd.DataFrame(
             {
@@ -27,23 +26,15 @@ class Sim:
 
     def step(self):
 
-        # print(self.vector)
-        which_vector = np.all(self.vector == self.capa.top_vector)
+        which_vector = np.all(self.border_vector == self.capa.top_vector)
+
         if (
             which_vector
         ):
 
-            self.rayo.move(
-                border_vector=self.vector,
-                capa=self.capa
-            )
-            self.rayo.reflect(border_vector=self.vector)
+            self.rayo.move(border_vector=self.border_vector)
+            self.rayo.reflect(border_vector=self.border_vector)
 
-            self.count = self.count + 1
-            self.vector = self.capa.bottom_vector
-
-            # maybe put it into a pandas dataframe?
-            #print("Position: " + str(self.fuerza.xy) + " Direction: " + str(self.fuerza.vector))
             temp = pd.DataFrame(
                 {
                     "Position": [
@@ -56,14 +47,14 @@ class Sim:
             )
 
             self.data = pd.concat([self.data, temp], ignore_index=True)
+
+            self.border_vector = self.capa.bottom_vector
 
         else:
-            self.rayo.move(
-                border_vector=self.vector,
-                capa=self.capa
-            )
-            self.rayo.reflect(border_vector=self.vector)
-            self.vector = self.capa.top_vector
+
+            self.rayo.move(border_vector=self.border_vector)
+            self.rayo.reflect(border_vector=self.border_vector)
+
 
             temp = pd.DataFrame(
                 {
@@ -76,8 +67,9 @@ class Sim:
                 }
             )
 
-
             self.data = pd.concat([self.data, temp], ignore_index=True)
+
+            self.border_vector = self.capa.top_vector
 
 
 
@@ -89,8 +81,4 @@ class Sim:
         self.graph.setDataframe(self.data)
         print(self.graph.dataframe)
         self.graph.create(times)
-        self.graph.ani.pause()
         self.graph.show()
-
-
-
