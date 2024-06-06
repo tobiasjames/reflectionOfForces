@@ -9,19 +9,19 @@ c1 = Capa(
     bottom_vector=np.array([1, -0.5])
 )
 
-x = 1
+x = -1
 M = lambda v : v[1] / v[0]
 B = lambda xy, v : xy[1] - (v[1] / v[0]) * xy[0]
 y = M(c1.bottom_vector) * x + B(c1.xy, c1.bottom_vector)     ########### y = mx + b
 
 f1 = Rayo(
     xy=np.array([x, y]),
-    vector=np.array([1, 1]),
+    vector=np.array([1, 4]),
     capa=c1
 )
 
 sim = Sim(capa=c1, rayo=f1)
 
-sim.run(5)
+sim.run()
 
 print("done")

@@ -75,35 +75,6 @@ class Graph:
                 posB=(B_x, B_y)
             )
 
-
-                    # print(f1_visual)
-            #
-            #
-            #     distance = math.sqrt((positions[1][1] - y_origin) ** 2 + (positions[1][0] - x_origin) ** 2)
-            #
-            #     x_distance = (dx * distance) / (math.sqrt(dx ** 2 + dy ** 2))
-            #     y_distance = (dy * distance) / (math.sqrt(dx ** 2 + dy ** 2))
-            #
-            #     # print(distance, x_distance, y_distance, distance * self.rayo.vector)
-            #     # print(x_origin, y_origin, dx, dy)
-            #
-            #     x_origin = x_origin + x_distance * (frame / number_of_frames)
-            #     y_origin = y_origin + y_distance * (frame / number_of_frames)
-            #     B_x = x_origin + dx
-            #     B_y = y_origin + dy
-            #
-            #     # print(x_origin, y_origin, B_x, B_y)
-            #     # f1_visual.set_positions(
-            #     #     posA=(x_origin, y_origin),
-            #     #     posB=(B_x, B_y)
-            #     # )
-            #
-            #     f1_visual = patches.FancyArrowPatch(
-            #         posA=(x_origin, y_origin),
-            #         posB=(B_x, B_y)
-            #     )
-            #     total_patches.append(f1_visual)
-            #
             return f1_visual
 
 
@@ -111,7 +82,7 @@ class Graph:
         self.ani = animation.FuncAnimation(
             fig=self.fig,
             func=update,
-            interval=500,
+            interval=2,
             frames=np.arange(0, number_of_frames + 1, 1)
         )
 
